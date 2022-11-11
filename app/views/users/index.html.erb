@@ -1,0 +1,62 @@
+<div id="register_div">
+    <h2>Register</h2>
+
+    <p class="error_message">
+        <% if flash[:register_errors] %>
+            <%= flash[:register_errors] %>
+        <% end %>
+    </p>
+
+    <form id="register_form" action="/register" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <ul>
+            <li>
+                <label>First Name:</label>
+                <input type="text" name="register[first_name]" value="" placeholder="First Name">
+            </li>
+            <li>
+                <label>Last Name:</label>
+                <input type="text" name="register[last_name]" value="" placeholder="Last Name">
+            </li>
+            <li>
+                <label>Email Address:</label>
+                <input type="email" name="register[email_address]" value="" placeholder="Email Address">
+            </li>
+            <li>
+                <label>Password:</label>
+                <input type="password" name="register[password]" value="" placeholder="Password">
+            </li>
+            <li>
+                <label>Confirm Password:</label>
+                <input type="password" name="register[confirm_password]" value="" placeholder="Confirm Password">
+            </li>
+        </ul>
+
+        <input type="submit" value="Register">
+    </form>
+</div>
+
+<div id="login_div">
+    <h2>Login</h2>
+
+    <p class="error_message">
+        <% if flash[:login_errors] %>
+            <%= flash[:login_errors] %>
+        <% end %>
+    </p>
+
+    <form id="login_form" action="/login" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <ul>
+            <li>
+                <label>Email Address:</label>
+                <input type="text" name="login[email_address]" value="" placeholder="Email Address">
+            </li>
+            <li>
+                <label>Password:</label>
+                <input type="password" name="login[password]" value="" placeholder="Password">
+            </li>
+        </ul>
+        <input type="submit" value="Login">
+    </form>
+</div>

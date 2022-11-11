@@ -1,0 +1,38 @@
+<h1>The Great Wall</h1>
+
+<div id="user_div">
+    <span> Hi, <%= @current_user['first_name'] %></span>
+    <p><a href="/logout">Logout</a></p>
+</div>
+
+<div id="new_message_div">
+    <h2>Post a Message</h2>
+
+    <form id="message_form" action="/create_message" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <textarea name="message[message_text]" placeholder="Post a Message"></textarea>
+        <input type="submit" value="Post a Message">
+    </form>
+</div>
+
+<div id="all_message_div">
+    <%= @message_partials %>
+</div>
+
+<div>
+    <form id="comment_form" action="/create_comment" method="post" class="hidden">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="comment[message_id]" value="" id="comment_message_id">
+        <textarea name="comment[comment_text]" id="comment_message_textarea"></textarea>
+    </form>
+
+    <form id="delete_message_form" action="/delete_message" method="post" class="hidden">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="message[message_id]" value="" id="delete_message_id">
+    </form>
+
+    <form id="delete_comment_form" action="/delete_comment" method="post" class="hidden">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="comment[comment_id]" value="" id="delete_comment_id">
+    </form>
+</div>

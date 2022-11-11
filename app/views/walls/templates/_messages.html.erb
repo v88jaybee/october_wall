@@ -1,0 +1,35 @@
+<% if all_messages.present? %>
+    <% all_messages.each do |message| %>
+        <div class="message_container_<%= message["message_id"]%> message_parent_div">
+            <h4>
+                <%= message["message"] %> 
+                <% if message["user_id"] == current_user["id"] %>
+                    <button class="delete_message_btn" data-message-id="<%= message["message_id"]%>">x</button>
+                <% end %>
+            </h4>
+            <p><%= message["author_message"] %> - <%= message["created_at"].to_date.strftime("%B %e, %y") %></p>
+
+            <div class="comment_div">
+                <textarea class="comment_textarea"></textarea>
+                <button class="post_comment_btn" data-message-id="<%= message["message_id"]%>">Post a Comment</button>
+
+                <% all_comments = JSON.parse message["user_comments"] %>
+                <ul>
+                    <% if all_comments.present? %>
+                        <% all_comments.each do |comment| %>   
+                            <li>
+                                <h5>
+                                    <%= comment["comment"] %> 
+                                    <% if comment["comment_user_id"] == current_user["id"] %>
+                                        <button class="delete_comment_btn" data-comment-id="<%= comment["comment_id"]%>">x</button>
+                                    <% end %>
+                                </h5>
+                                <p><%= comment["author_comment"] %> - <%= comment["created_at"].to_date.strftime("%B %e, %y") %></p>
+                            </li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    <% end %>
+<% end %>
